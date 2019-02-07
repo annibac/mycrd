@@ -11,9 +11,7 @@ typedef struct s_block {
 } t_block;
 
 #define S_BLOCK_SIZE sizeof(struct s_block)+4
-//#define ALIGNMENT 8
-//#define ALIGN(size) (((size) + (ALIGNMENT-1)) & ~(ALIGNMENT-1)
-#define PAGE_SIZE 2048
+#define PAGE_SIZE 20480
 t_block *BASE_BLOCK = NULL;
 
 

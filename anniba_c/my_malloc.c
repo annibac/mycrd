@@ -15,7 +15,6 @@ void free(void *addr)
 
 t_block *create_new_page(t_block *last, size_t size)
 {
-  printf("In create new page \n");
   t_block *block;
   int m_ps;
   
@@ -40,7 +39,6 @@ t_block *create_new_page(t_block *last, size_t size)
 
 t_block* internal_get_free_block(t_block **last, size_t size)
 {
-  printf("In internal free block \n");
   t_block *current;
   current = BASE_BLOCK;
 
@@ -49,15 +47,12 @@ t_block* internal_get_free_block(t_block **last, size_t size)
       *last = current;
       current = current->next;
     }
-  //printf("current : %x \n", current);
-  //printf("last : %x \n", (current-1));
-  return (current);
+   return (current);
 }
 
 
 t_block *split_page(t_block *block, size_t size)
 {
-  printf("In split page \n");
   t_block *new_block;
   
   new_block = (t_block *)(unsigned int*)block + size;
@@ -71,7 +66,6 @@ t_block *split_page(t_block *block, size_t size)
 
 t_block *check_size(t_block *block, size_t size)
 {
-  printf("Check size \n");
   if(block->size == size)
     {
       block->is_free = 1;
@@ -86,7 +80,6 @@ t_block *check_size(t_block *block, size_t size)
 
 t_block *create_and_split(t_block *block, t_block *last, size_t size)
 {
-  printf("Create and split \n");
   if(last)
     block = create_new_page(last, size);
   else
@@ -103,6 +96,7 @@ t_block *create_and_split(t_block *block, t_block *last, size_t size)
   else
     return NULL;
 }
+
 
 void *malloc(size_t size)
 {

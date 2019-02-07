@@ -21,7 +21,7 @@ $(SRC:.c=.d):%.d:%.c
 clean:
 	-${RM} ${OBJ} $(SRC:.c=.d)
 
-fclean: 	clean
-		${RM} ${NAME}
+fclean:
+	-${RM} ${OBJ} ${NAME} $(SRC:.c=.d)
 
-re:	fclean all
+re:	clean all
