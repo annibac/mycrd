@@ -2,23 +2,26 @@ CC		=	gcc
 LDFLAGS		=	-shared
 CFLAGS		=	-W -Wall -Werror -fPIC
 RM		=	rm -f
-TARGET_LIB	=	libmy_malloc_Linux.so
+NAME		=	libmy_malloc_Linux.so
 SRC 		=	my_malloc.c
 OBJ		=	$(SRC:.c=.o)
 
 .PHONY:	all
 
-all:	${TARGET_LIB}
+all:	${NAME}
 
-$(TARGET_LIB): $(OBJ)
+$(NAME): $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 $(SRC:.c=.d):%.d:%.c
 	$(CC) $(CFLAGS) -MM $< >$@
 
-include $(SRC:.c=.d)
-
 .PHONY:	clean
 
 clean:
-	-${RM} ${OBJ} ${TARGET_LIB} $(SRC:.c=.d)
+	-${RM} ${OBJ} $(SRC:.c=.d)
+
+fclean: 	clean
+		${RM} ${NAME}
+
+re:	fclean all
